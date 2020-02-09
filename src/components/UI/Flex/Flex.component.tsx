@@ -1,8 +1,8 @@
-import Box from "components/UI/Box";
-import styled from "@emotion/styled";
+import Box from 'components/UI/Box';
+import styled from 'styles/styled';
 
 const Flex = styled(Box)({
-  display: "flex"
+  display: 'flex'
 });
 
 export default Flex;

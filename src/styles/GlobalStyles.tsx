@@ -1,5 +1,5 @@
-import React from 'react'
-import { Global, css } from '@emotion/core'
+import React from 'react';
+import { Global, css } from '@emotion/core';
 
 const GlobalStyles: React.FC = () => {
   return (
@@ -18,7 +18,7 @@ const GlobalStyles: React.FC = () => {
         }
       `}
     />
-  )
-}
+  );
+};
 
-export default GlobalStyles
+export default GlobalStyles;

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import {
   space,
   layout,
@@ -21,9 +21,9 @@ import {
   system,
   shadow,
   ShadowProps
-} from 'styled-system'
-import shouldForwardProp from '@styled-system/should-forward-prop'
-import * as CSS from 'csstype'
+} from 'styled-system';
+import shouldForwardProp from '@styled-system/should-forward-prop';
+import * as CSS from 'csstype';
 
 export type BoxProps = SpaceProps &
   LayoutProps &
@@ -42,12 +42,12 @@ export type BoxProps = SpaceProps &
      * @see https://github.com/styled-system/styled-system/issues/464
      * @see https://gist.github.com/chiplay/d10435c0962ec62906319e12790104d1
      */
-    color?: CSS.ColorProperty
-    as?: keyof JSX.IntrinsicElements
-    textTransform?: CSS.TextTransformProperty
-    transform?: CSS.TransformProperty
-    cursor?: CSS.CursorProperty
-  }
+    color?: CSS.ColorProperty;
+    as?: keyof JSX.IntrinsicElements;
+    textTransform?: CSS.TextTransformProperty;
+    transform?: CSS.TransformProperty;
+    cursor?: CSS.CursorProperty;
+  };
 
 const Box = styled<'div', BoxProps>('div', { shouldForwardProp })(
   {
@@ -67,6 +67,6 @@ const Box = styled<'div', BoxProps>('div', { shouldForwardProp })(
   grid,
   shadow,
   system({ textTransform: true, transform: true, cursor: true })
-)
+);
 
-export default Box
+export default Box;

@@ -1,1 +1,1 @@
-export { default } from "./Flex.component";
+export { default } from './Flex.component';
