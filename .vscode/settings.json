@@ -1,0 +1,11 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "editor.formatOnSave": true,
+  "eslint.options": {
+    "extensions": [".html", ".js", ".jsx", ".ts", ".tsx", ".mdx"]
+  },
+  "eslint.validate": ["typescript", "typescriptreact"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
