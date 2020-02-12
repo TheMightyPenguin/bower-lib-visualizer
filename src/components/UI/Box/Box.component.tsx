@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styles/styled';
 import {
   space,
   layout,
