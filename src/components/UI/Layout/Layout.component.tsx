@@ -5,7 +5,12 @@ import Header from 'components/UI/Header';
 import Footer from 'components/UI/Footer';
 import Sidebar from 'components/UI/Sidebar';
 
-const Layout: React.FC = ({ children }) => {
+type LayoutProps = {
+  mainContent: React.ReactNode;
+  sidebarContent: React.ReactNode;
+};
+
+const Layout: React.FC<LayoutProps> = ({ mainContent, sidebarContent }) => {
   return (
     <Flex
       backgroundColor="black"
@@ -17,10 +22,10 @@ const Layout: React.FC = ({ children }) => {
       <Header />
       <Flex flex="1">
         <Box padding="small" flexGrow={0.3}>
-          <Sidebar />
+          <Sidebar>{sidebarContent}</Sidebar>
         </Box>
         <Box padding="small" flexGrow={0.7}>
-          {children}
+          {mainContent}
         </Box>
       </Flex>
       <Footer />
