@@ -4,12 +4,16 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import GlobalStyles from 'styles/GlobalStyles';
 import HistoryProvider from 'providers/HistoryProvider';
+import { ThemeProvider } from 'emotion-theming';
+import theme from 'styles/themes/default';
 
 ReactDOM.render(
-  <HistoryProvider>
-    <GlobalStyles />
-    <App />
-  </HistoryProvider>,
+  <ThemeProvider theme={theme}>
+    <HistoryProvider>
+      <GlobalStyles />
+      <App />
+    </HistoryProvider>
+  </ThemeProvider>,
   document.getElementById('root')
 );
 
