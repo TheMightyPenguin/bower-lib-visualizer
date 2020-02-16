@@ -76,7 +76,7 @@ const App: React.FC = () => {
                 <Box padding="small">Owner</Box>
               </Flex>
               {projects.map((item: any) => {
-                return <ProjectItem key={item.repository_url} project={item} />;
+                return <ProjectItem key={item.name} project={item} />;
               })}
             </Box>
           ) : null}
