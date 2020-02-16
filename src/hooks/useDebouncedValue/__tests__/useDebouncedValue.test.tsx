@@ -12,7 +12,7 @@ test('shows initial value on first render', () => {
   expect(getByText('hello')).toBeInTheDocument();
 });
 
-test('shows initial value and eventually the updated value', async () => {
+test('shows initial value, gets updated and still shows initial value, and eventually the updated value', async () => {
   const { getByText, findByText, rerender } = render(
     <Component value="hello" />
   );
