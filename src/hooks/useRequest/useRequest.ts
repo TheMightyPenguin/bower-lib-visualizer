@@ -8,16 +8,11 @@ type UseRequestState<T> = {
 };
 
 function useRequest<T>(url: string): UseRequestState<T> {
-  const isEmptyUrl = url.length === 0;
   const [state, setState] = useState<UseRequestState<T>>({
-    loading: isEmptyUrl ? false : true
+    loading: true
   });
 
   useEffect(() => {
-    if (isEmptyUrl) {
-      return;
-    }
-
     async function getData() {
       setState({ loading: true });
       try {
