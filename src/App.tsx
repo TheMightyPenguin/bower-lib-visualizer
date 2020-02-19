@@ -58,7 +58,7 @@ const App: React.FC = () => {
   return (
     <Layout
       mainContent={
-        <Box padding={['none', 'large']}>
+        <Box width="100%" padding={['none', 'large']}>
           <Box marginBottom="large">
             <Input
               type="text"
@@ -70,111 +70,100 @@ const App: React.FC = () => {
               }}
             />
           </Box>
-          <Box
-            onClick={toggleSidebar}
-            paddingX={['small', 'none']}
-            paddingBottom="small"
-          >
-            Show filter/sort options
-          </Box>
           {loading ? (
-            <Box>
+            <Box paddingX={['small', 'none']}>
               {debouncedInput
                 ? `Searching for ${debouncedInput}`
                 : 'Loading popular projects'}
             </Box>
           ) : projects ? (
-            <Box
-              backgroundColor="white"
-              borderRadius={['0px', '6px']}
-              boxShadow="5px 5px 16px 5px #9FB1BCCE"
-            >
-              <Flex padding="medium">
-                <Box>Name</Box>
-                <Box>Stars</Box>
-                <Box>Owner</Box>
-              </Flex>
-              {projects.map((item: any, index) => {
-                return (
-                  <React.Fragment key={item.name}>
-                    <ProjectItem project={item} />
-                    {index !== projects.length - 1 ? (
-                      <Box borderTop="1px solid" borderTopColor="accent" />
-                    ) : null}
-                  </React.Fragment>
-                );
-              })}
-            </Box>
+            <React.Fragment>
+              <Box
+                onClick={toggleSidebar}
+                paddingX={['small', 'none']}
+                paddingBottom="small"
+              >
+                Show filter/sort options
+              </Box>
+              <Box
+                backgroundColor="white"
+                borderRadius={['0px', '6px']}
+                boxShadow="5px 5px 16px 5px #9FB1BCCE"
+              >
+                {projects.map((item: any, index) => {
+                  return (
+                    <React.Fragment key={item.name}>
+                      <ProjectItem project={item} />
+                      {index !== projects.length - 1 ? (
+                        <Box borderTop="1px solid" borderTopColor="accent" />
+                      ) : null}
+                    </React.Fragment>
+                  );
+                })}
+              </Box>
+            </React.Fragment>
           ) : null}
         </Box>
       }
       sidebarContent={
-        <Box padding="small">
+        <Box>
           <Box>
-            <Box>
-              Items per page:{' '}
-              <Select
-                value={itemsPerPage}
-                onChange={event => {
-                  setItemsPerPage(event.target.value);
-                }}
-                options={[
-                  { value: '5', label: '5' },
-                  { value: '10', label: '10' },
-                  { value: '20', label: '20' },
-                  { value: '50', label: '50' }
-                ]}
-              />
-            </Box>
+            Items per page:{' '}
+            <Select
+              value={itemsPerPage}
+              onChange={event => {
+                setItemsPerPage(event.target.value);
+              }}
+              options={[
+                { value: '5', label: '5' },
+                { value: '10', label: '10' },
+                { value: '20', label: '20' },
+                { value: '50', label: '50' }
+              ]}
+            />
           </Box>
           <Box>
-            <Box>
-              Page:{' '}
-              <Select
-                value={page}
-                onChange={event => {
-                  setPage(event.target.value);
-                }}
-                options={[
-                  { value: '1', label: '1' },
-                  { value: '2', label: '2' },
-                  { value: '3', label: '3' },
-                  { value: '4', label: '4' }
-                ]}
-              />
-            </Box>
+            Page:{' '}
+            <Select
+              value={page}
+              onChange={event => {
+                setPage(event.target.value);
+              }}
+              options={[
+                { value: '1', label: '1' },
+                { value: '2', label: '2' },
+                { value: '3', label: '3' },
+                { value: '4', label: '4' }
+              ]}
+            />
           </Box>
           <Box>
-            <Box>
-              Sort by:
-              <Select
-                value={sortField}
-                onChange={event => {
-                  setSortField(event.target.value);
-                }}
-                options={[
-                  { value: '', label: 'None' },
-                  { value: 'name', label: 'Name' },
-                  { value: 'stars', label: 'Stars' },
-                  { value: 'owner', label: 'Owner' }
-                ]}
-              />
-            </Box>
+            Sort by:
+            <Select
+              value={sortField}
+              onChange={event => {
+                setSortField(event.target.value);
+              }}
+              options={[
+                { value: '', label: 'None' },
+                { value: 'name', label: 'Name' },
+                { value: 'stars', label: 'Stars' },
+                { value: 'owner', label: 'Owner' }
+              ]}
+            />
           </Box>
           <Box>
-            <Box>
-              Sort mode:
-              <Select
-                value={sortField}
-                onChange={event => {
-                  setSortField(event.target.value);
-                }}
-                options={[
-                  { value: 'ASC', label: 'asc' },
-                  { value: 'DESC', label: 'desc' }
-                ]}
-              />
-            </Box>
+            Sort mode:
+            <Select
+              value={sortField}
+              onChange={event => {
+                setSortField(event.target.value);
+              }}
+              options={[
+                { value: 'ASC', label: 'asc' },
+                { value: 'DESC', label: 'desc' }
+              ]}
+            />
           </Box>
         </Box>
       }
