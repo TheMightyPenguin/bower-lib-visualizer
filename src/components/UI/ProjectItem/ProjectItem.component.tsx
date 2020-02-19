@@ -14,7 +14,13 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
       <Box>
         <Box fontWeight="bold" marginBottom="xsmall">
           {project.homepage ? (
-            <a href={project.homepage}>{project.name}</a>
+            <a
+              href={project.homepage}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {project.name}
+            </a>
           ) : (
             project.name
           )}
