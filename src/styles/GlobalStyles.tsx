@@ -1,10 +1,11 @@
 import React from 'react';
 import { Global, css } from '@emotion/core';
+import { Theme } from 'styles/themes/types';
 
 const GlobalStyles: React.FC = () => {
   return (
     <Global
-      styles={css`
+      styles={(theme: Theme) => css`
         @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
         html,
@@ -15,6 +16,7 @@ const GlobalStyles: React.FC = () => {
           padding: 0;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
+          background-color: ${theme.colors.background};
         }
       `}
     />
