@@ -13,7 +13,16 @@ export type FontSizeScaleUnit =
   | 'large'
   | 'xlarge';
 
+export type ColorUnit =
+  | 'primary'
+  | 'secondary'
+  | 'accent'
+  | 'background'
+  | 'shadow'
+  | 'white';
+
 type Theme = {
   space: Record<SpaceScaleUnit, number>;
   fontSizes: Record<FontSizeScaleUnit, number>;
+  colors: Record<ColorUnit, string>;
 };
