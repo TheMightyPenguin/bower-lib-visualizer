@@ -4,6 +4,7 @@ import Flex from 'components/UI/Flex';
 import Header from 'components/UI/Header';
 import Footer from 'components/UI/Footer';
 import Sidebar from 'components/UI/Sidebar';
+import { useSidebarState } from 'providers/SidebarProvider';
 
 type LayoutProps = {
   mainContent: React.ReactNode;
@@ -11,24 +12,27 @@ type LayoutProps = {
 };
 
 const Layout: React.FC<LayoutProps> = ({ mainContent, sidebarContent }) => {
+  const [showSidebar] = useSidebarState();
+
   return (
     <Flex
-      backgroundColor="black"
-      color="white"
       width="100%"
       minHeight="100vh"
       flexDirection="column"
+      backgroundColor="background"
     >
-      <Header />
       <Flex flex="1">
-        <Box padding="small" flexGrow={0.3}>
-          <Sidebar>{sidebarContent}</Sidebar>
-        </Box>
-        <Box padding="small" flexGrow={0.7}>
+        {showSidebar ? (
+          <Box flexGrow={0.3}>
+            <Sidebar>{sidebarContent}</Sidebar>
+          </Box>
+        ) : null}
+        <Box flexGrow={showSidebar ? 0.7 : 1} overflowY="auto">
+          <Header />
           {mainContent}
+          <Footer />
         </Box>
       </Flex>
-      <Footer />
     </Flex>
   );
 };

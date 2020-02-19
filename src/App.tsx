@@ -19,6 +19,7 @@ const App: React.FC = () => {
   const [itemsPerPage, setItemsPerPage] = useQueryParamState('per_page');
   const [sortField, setSortField] = useQueryParamState('sort_by');
   const [sortMode, setSortMode] = useQueryParamState('sort_mode');
+  const [, toggleSidebar] = useSidebarState();
 
   const debouncedInput = useDebouncedValue(inputValue, 300);
   const searchUrl =
@@ -68,6 +69,13 @@ const App: React.FC = () => {
                 setInputValue(event.target.value);
               }}
             />
+          </Box>
+          <Box
+            onClick={toggleSidebar}
+            paddingX={['small', 'none']}
+            paddingBottom="small"
+          >
+            Show filter/sort options
           </Box>
           {loading ? (
             <Box>

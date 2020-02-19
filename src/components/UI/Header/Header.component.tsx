@@ -1,9 +1,10 @@
 import React from 'react';
 import Box from 'components/UI/Box';
 import Flex from 'components/UI/Flex';
+import { useSidebarState } from 'providers/SidebarProvider';
 
 const Header: React.FC = () => {
-  return <Box>Header</Box>;
+  const [, toggleSidebar] = useSidebarState();
   return (
     <Flex
       height="60px"
