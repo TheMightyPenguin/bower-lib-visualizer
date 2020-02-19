@@ -25,7 +25,7 @@ const theme: Theme = {
     secondary: '#6E8898',
     accent: '#E2C044',
     shadow: '#9FB1BC',
-    background: '#D3D0CB',
+    background: '#F1EAEA',
     white: '#FFFFFF'
   }
 };
