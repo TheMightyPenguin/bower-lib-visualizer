@@ -10,10 +10,19 @@ type ProjectItemProps = {
 const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
   const owner = project.repository_url.split('/').splice(-2, 1);
   return (
-    <Flex>
-      <Box padding="small">{project.name}</Box>
-      <Box padding="small">{project.stars}</Box>
-      <Box padding="small">{owner}</Box>
+    <Flex padding="medium">
+      <Box>
+        <Box fontWeight="bold" marginBottom="xsmall">
+          {project.homepage ? (
+            <a href={project.homepage}>{project.name}</a>
+          ) : (
+            project.name
+          )}
+        </Box>
+        <Box>By: {owner}</Box>
+      </Box>
+      <Box margin="auto" />
+      <Box>⭐️{project.stars} stars</Box>
     </Flex>
   );
 };

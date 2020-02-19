@@ -1,12 +1,14 @@
 import React, { useMemo } from 'react';
 import Box from 'components/UI/Box';
 import Flex from 'components/UI/Flex';
+import Input from 'components/UI/Input';
 import Select from 'components/UI/Select';
 import Layout from 'components/UI/Layout';
 import ProjectItem from 'components/UI/ProjectItem';
 import useRequest from 'hooks/useRequest';
 import useQueryParamState from 'hooks/useQueryParamState';
 import useDebouncedValue from 'hooks/useDebouncedValue';
+import { useSidebarState } from 'providers/SidebarProvider';
 import { Project } from 'types/apiTypes';
 
 const API_URL = 'https://libraries.io/api/bower-search?q=';
@@ -55,14 +57,18 @@ const App: React.FC = () => {
   return (
     <Layout
       mainContent={
-        <Box>
-          <input
-            type="text"
-            value={inputValue}
-            onChange={event => {
-              setInputValue(event.target.value);
-            }}
-          />
+        <Box padding={['none', 'large']}>
+          <Box marginBottom="large">
+            <Input
+              type="text"
+              value={inputValue}
+              placeholder="Search for projects"
+              borderRadius={['0px', '6px']}
+              onChange={event => {
+                setInputValue(event.target.value);
+              }}
+            />
+          </Box>
           {loading ? (
             <Box>
               {debouncedInput

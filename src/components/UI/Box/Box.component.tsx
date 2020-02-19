@@ -54,7 +54,7 @@ const Box = styled<'div', BoxProps>('div', { shouldForwardProp })(
     margin: 0,
     padding: 0,
     border: 0,
-    fontFamily: ['Montserrat', 'sans-serif'],
+    fontFamily: ['Montserrat', 'sans-serif'].reverse(),
     boxSizing: 'border-box'
   },
   space,
