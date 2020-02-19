@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import Box from 'components/UI/Box';
 import Flex from 'components/UI/Flex';
+import Select from 'components/UI/Select';
 import Layout from 'components/UI/Layout';
 import ProjectItem from 'components/UI/ProjectItem';
 import useRequest from 'hooks/useRequest';
@@ -84,67 +85,71 @@ const App: React.FC = () => {
         </Box>
       }
       sidebarContent={
-        <Box>
+        <Box padding="small">
           <Box>
             <Box>
               Items per page:{' '}
-              <select
+              <Select
                 value={itemsPerPage}
                 onChange={event => {
                   setItemsPerPage(event.target.value);
                 }}
-              >
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-              </select>
+                options={[
+                  { value: '5', label: '5' },
+                  { value: '10', label: '10' },
+                  { value: '20', label: '20' },
+                  { value: '50', label: '50' }
+                ]}
+              />
             </Box>
           </Box>
           <Box>
             <Box>
               Page:{' '}
-              <select
+              <Select
                 value={page}
                 onChange={event => {
                   setPage(event.target.value);
                 }}
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
+                options={[
+                  { value: '1', label: '1' },
+                  { value: '2', label: '2' },
+                  { value: '3', label: '3' },
+                  { value: '4', label: '4' }
+                ]}
+              />
             </Box>
           </Box>
           <Box>
             <Box>
               Sort by:
-              <select
+              <Select
                 value={sortField}
                 onChange={event => {
                   setSortField(event.target.value);
                 }}
-              >
-                <option value="">None</option>
-                <option value="name">Name</option>
-                <option value="stars">Stars</option>
-                <option value="owner">Owner</option>
-              </select>
+                options={[
+                  { value: '', label: 'None' },
+                  { value: 'name', label: 'Name' },
+                  { value: 'stars', label: 'Stars' },
+                  { value: 'owner', label: 'Owner' }
+                ]}
+              />
             </Box>
           </Box>
           <Box>
             <Box>
               Sort mode:
-              <select
-                value={sortMode}
+              <Select
+                value={sortField}
                 onChange={event => {
-                  setSortMode(event.target.value);
+                  setSortField(event.target.value);
                 }}
-              >
-                <option value="ASC">ASC</option>
-                <option value="DESC">DESC</option>
-              </select>
+                options={[
+                  { value: 'ASC', label: 'asc' },
+                  { value: 'DESC', label: 'desc' }
+                ]}
+              />
             </Box>
           </Box>
         </Box>
