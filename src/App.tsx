@@ -84,18 +84,28 @@ const App: React.FC = () => {
                 : 'Loading popular projects'}
             </Box>
           ) : projects ? (
-            <Box>
-              <Flex>
-                <Box padding="small">Name</Box>
-                <Box padding="small">Stars</Box>
-                <Box padding="small">Owner</Box>
+            <Box
+              backgroundColor="white"
+              borderRadius={['0px', '6px']}
+              boxShadow="5px 5px 16px 5px #9FB1BCCE"
+            >
+              <Flex padding="medium">
+                <Box>Name</Box>
+                <Box>Stars</Box>
+                <Box>Owner</Box>
               </Flex>
-              {projects.map((item: any) => {
-                return <ProjectItem key={item.name} project={item} />;
+              {projects.map((item: any, index) => {
+                return (
+                  <React.Fragment key={item.name}>
+                    <ProjectItem project={item} />
+                    {index !== projects.length - 1 ? (
+                      <Box borderTop="1px solid" borderTopColor="accent" />
+                    ) : null}
+                  </React.Fragment>
+                );
               })}
             </Box>
           ) : null}
-          <Box>Content</Box>
         </Box>
       }
       sidebarContent={
