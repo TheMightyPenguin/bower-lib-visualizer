@@ -47,6 +47,7 @@ export type BoxProps = SpaceProps &
     textTransform?: CSS.TextTransformProperty;
     transform?: CSS.TransformProperty;
     cursor?: CSS.CursorProperty;
+    textDecoration?: CSS.TextDecorationProperty<string>;
   };
 
 const Box = styled<'div', BoxProps>('div', { shouldForwardProp })(
@@ -66,7 +67,12 @@ const Box = styled<'div', BoxProps>('div', { shouldForwardProp })(
   flexbox,
   grid,
   shadow,
-  system({ textTransform: true, transform: true, cursor: true })
+  system({
+    textTransform: true,
+    transform: true,
+    cursor: true,
+    textDecoration: true
+  })
 );
 
 export default Box;

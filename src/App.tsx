@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const [itemsPerPage, setItemsPerPage] = useQueryParamState('per_page');
   const [sortField, setSortField] = useQueryParamState('sort_by');
   const [sortMode, setSortMode] = useQueryParamState('sort_mode');
-  const [, toggleSidebar] = useSidebarState();
+  const [showSidebar, toggleSidebar] = useSidebarState();
 
   const debouncedInput = useDebouncedValue(inputValue, 300);
   const searchUrl =
@@ -81,9 +81,11 @@ const App: React.FC = () => {
               <Box
                 onClick={toggleSidebar}
                 paddingX={['small', 'none']}
-                paddingBottom="small"
+                paddingBottom="medium"
+                cursor="pointer"
+                textDecoration="underline"
               >
-                Show filter/sort options
+                {showSidebar ? 'Hide' : 'Show'} filter/sort options
               </Box>
               <Box
                 backgroundColor="white"
@@ -155,9 +157,9 @@ const App: React.FC = () => {
           <Box>
             Sort mode:
             <Select
-              value={sortField}
+              value={sortMode}
               onChange={event => {
-                setSortField(event.target.value);
+                setSortMode(event.target.value);
               }}
               options={[
                 { value: 'ASC', label: 'asc' },
