@@ -67,8 +67,6 @@ const App: React.FC = () => {
     });
   }, [data, sortField, sortMode]);
 
-  console.log('isOffline', isOffline);
-
   if (error && !isOffline) {
     return (
       <Layout
