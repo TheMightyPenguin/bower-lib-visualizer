@@ -34,6 +34,7 @@ const Sidebar: React.FC = ({ children }) => {
         bottom={0}
         right={0}
         backgroundColor="rgba(0,0,0,0.25)"
+        cursor="pointer"
         onClick={toggleSidebar}
       />
     </Box>

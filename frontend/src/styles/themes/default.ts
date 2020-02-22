@@ -26,7 +26,8 @@ const theme: Theme = {
     accent: '#E2C044',
     shadow: '#9FB1BC',
     background: '#F1EAEA',
-    white: '#FFFFFF'
+    white: '#FFFFFF',
+    black: '#000000'
   }
 };
 

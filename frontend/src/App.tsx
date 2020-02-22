@@ -158,8 +158,10 @@ const App: React.FC = () => {
       }
       sidebarContent={
         <Box>
-          <Box marginBottom="small">
-            Items per page:{' '}
+          <Box marginBottom="medium">
+            <Box marginBottom="xsmall" fontSize="large" fontWeight="bold">
+              Items per page:
+            </Box>
             <Select
               value={itemsPerPage}
               onChange={event => {
@@ -173,8 +175,10 @@ const App: React.FC = () => {
               ]}
             />
           </Box>
-          <Box marginBottom="small">
-            Sort by:
+          <Box marginBottom="medium">
+            <Box marginBottom="xsmall" fontSize="large" fontWeight="bold">
+              Sort by:
+            </Box>
             <Select
               value={sortField}
               onChange={event => {
@@ -188,16 +192,18 @@ const App: React.FC = () => {
               ]}
             />
           </Box>
-          <Box marginBottom="small">
-            Sort mode:
+          <Box marginBottom="medium">
+            <Box marginBottom="xsmall" fontSize="large" fontWeight="bold">
+              Sort mode:
+            </Box>
             <Select
               value={sortMode}
               onChange={event => {
                 setSortMode(event.target.value);
               }}
               options={[
-                { value: 'ASC', label: 'asc' },
-                { value: 'DESC', label: 'desc' }
+                { value: 'ASC', label: 'Ascending' },
+                { value: 'DESC', label: 'Descending' }
               ]}
             />
           </Box>

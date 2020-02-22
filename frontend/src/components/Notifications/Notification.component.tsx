@@ -10,8 +10,6 @@ const UpdateServiceWorkerNotice: React.FC = () => {
     sendNotification = setNotification;
   }, [setNotification]);
 
-  console.log('notification!!', notification);
-
   return notification ? (
     <Box
       position="fixed"

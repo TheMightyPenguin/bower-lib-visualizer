@@ -1,7 +1,7 @@
 import styled from 'styles/styled';
 import { borderRadius, BorderRadiusProps } from 'styled-system';
 
-type InputProps = BorderRadiusProps;
+type InputProps = BorderRadiusProps & React.ComponentPropsWithRef<'input'>;
 
 const Input = styled<'input', InputProps>('input')(props => {
   return {

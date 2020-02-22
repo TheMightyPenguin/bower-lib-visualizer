@@ -19,7 +19,8 @@ export type ColorUnit =
   | 'accent'
   | 'background'
   | 'shadow'
-  | 'white';
+  | 'white'
+  | 'black';
 
 type Theme = {
   space: Record<SpaceScaleUnit, number>;

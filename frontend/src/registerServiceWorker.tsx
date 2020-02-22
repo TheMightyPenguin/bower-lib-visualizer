@@ -8,7 +8,6 @@ async function registerServiceWorker() {
   const workbox = new Workbox(swUrl);
 
   workbox.addEventListener('waiting', () => {
-    console.log('send this crap');
     sendNotification(
       <Flex
         onClick={() => {
@@ -28,6 +27,7 @@ async function registerServiceWorker() {
         There&apos;s an update! Click here to update the App!
       </Flex>
     );
+
     workbox.addEventListener('controlling', () => {
       window.location.reload();
     });
