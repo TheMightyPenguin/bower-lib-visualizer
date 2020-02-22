@@ -10,6 +10,8 @@ This application uses a Service Worker, _and it runs even on development mode_, 
 - Adds a notification to update the App when any asset changes. This is really important for PWA's, specially when deploying a new version as we want users to always use the latest version.
 - If you try to search while you're offline, it will remember the search and show a notification when the user is back online. This is not working reliably tho.
 
+This application gets automatically deployed to Netlify on every push, check it out here: https://musing-mirzakhani-054044.netlify.com/
+
 ## Available Scripts
 
 - `yarn start`: Runs the app
