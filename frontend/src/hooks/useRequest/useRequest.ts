@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react';
 import request from 'utils/request';
-
-type UseRequestState<T> = {
-  loading: boolean;
-  data?: T;
-  error?: Error;
-};
+import { UseRequestState, ResponseWithPagination } from './types';
 
 function useRequest<T>(url: string): UseRequestState<T> {
   const [state, setState] = useState<UseRequestState<T>>({
@@ -16,8 +11,12 @@ function useRequest<T>(url: string): UseRequestState<T> {
     async function getData() {
       setState({ loading: true });
       try {
-        const data = await request<T>(url);
-        setState({ loading: false, data });
+        const data = await request<ResponseWithPagination<T>>(url);
+        setState({
+          loading: false,
+          data: data.data,
+          pagination: data.pagination
+        });
       } catch (e) {
         setState({ loading: false, error: e });
       }

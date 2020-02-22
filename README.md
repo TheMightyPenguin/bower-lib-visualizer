@@ -25,3 +25,5 @@ This service it's just a small layer on top that returns a JSON with the followi
 ```
 
 Check the `/api` folder to learn more about it.
+
+The API was deployed to this endpoint: `https://rmru2tqyjl.execute-api.us-west-2.amazonaws.com/prod/`
