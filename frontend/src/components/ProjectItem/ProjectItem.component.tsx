@@ -8,16 +8,13 @@ type ProjectItemProps = {
 };
 
 const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
+  const projectLink = project.homepage || project.repository_url;
   return (
     <Flex padding="medium">
       <Box>
         <Box fontWeight="bold" marginBottom="xsmall">
-          {project.homepage ? (
-            <a
-              href={project.homepage}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          {projectLink ? (
+            <a href={projectLink} target="_blank" rel="noopener noreferrer">
               {project.name}
             </a>
           ) : (
