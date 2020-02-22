@@ -16,3 +16,13 @@ This application uses a Service Worker, _and it runs even on development mode_, 
 - `yarn test`: Runs tests
 
 - `yarn build`: Builds the app
+
+### Could Improve
+
+- Adding more integration tests to the app: For example to test the behaviour of the current options on the URL, or when interacting with the sort inputs.
+- Have a better method of generating mock data, probably using something like: https://github.com/willryan/factory.ts
+- The way of sending notifactions. Right now this is only used to send the Service Worker update message, so the way to send notifications is really hacky, check Notifications.component.tsx to see it. They way to go with this would be to create a Provider around it, and then consume the function to send notifications from it. And also moving the Servicce Worker registration into a provider so that it can consume this context to send the notifications
+- The service worker is written in Plain JS, this is due the the painful process of creating a custom Service Worker when using Create React App. I'd change this to a custom Webpack setting so that when things like this are needed, the settings are more flexible and allow customization for these cases. Squoosh is a public example of a PWA that writes its service worker in TypeScript: https://github.com/GoogleChromeLabs/squoosh. This change would improve Developer Experience when modifying the Service Worker.
+- UX/UI, I'm not totally happy with how the apps looks, but it's decent.
+- Implement better primivites components to handle Layouts, components like Stack or Inline (similar to the ones in this design system: https://seek-oss.github.io/braid-design-system/foundations/layout) would make it easier to implement layouts, instead of using Box's with lots of props all over the place. The Box approach is nice to use and really flexible, but won't scale well to bigger applications as we'll see repeating props all over the place, so having abstracions like Stack or Inline help a lot with this, and a bonus is that we don't need the care about the underlying implementation detials (e.g.: using Flex or CSS Grid).
+- Probably a lot of other things that I'm missing, there's always room for improvement! :D
