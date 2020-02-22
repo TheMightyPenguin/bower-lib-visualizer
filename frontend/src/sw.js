@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 
 const API_ENDPOINT =
@@ -23,6 +24,15 @@ workbox.routing.registerNavigationRoute(
   }
 );
 
+function showNotification(title, options) {
+  return self.registration.showNotification(title, options);
+}
+
+self.addEventListener('push', event => {
+  const title = 'Get Started With Workbox';
+  event.waitUntil(self.registration.showNotification(title, { tag: 'lel ' }));
+});
+
 // Cache API with StaleWhileRevalidate
 workbox.routing.registerRoute(
   API_REGEX,
@@ -31,6 +41,33 @@ workbox.routing.registerRoute(
     plugins: [
       new workbox.expiration.Plugin({
         maxAgeSeconds: 1 * 24 * 60 * 60 // 1 Day
+      }),
+      new workbox.backgroundSync.Plugin('retryQueue', {
+        maxRetentionTime: 24 * 60, // 24 hours
+        onSync: async ({ queue }) => {
+          const entry = await queue.shiftRequest();
+
+          if (!entry || !entry.request) {
+            return;
+          }
+
+          const requestUrl = new URL(entry.request.url);
+          const searchQuery = requestUrl.searchParams.get('q');
+
+          await fetch(entry.request);
+
+          const notificationTitle = searchQuery
+            ? `Your serch for "${searchQuery}" is waiting for you!`
+            : 'Results for most popular libraries are waiting for you!';
+          console.log(requestUrl);
+          console.log('sending notification');
+          await showNotification(notificationTitle);
+        }
+      })
+    ]
+  })
+);
+
 /**
  * Cacching google fonts using this recipe:
  * @see https://developers.google.com/web/tools/workbox/guides/common-recipes
