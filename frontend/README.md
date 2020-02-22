@@ -8,7 +8,7 @@ This application uses a Service Worker, _and it runs even on development mode_, 
 
 - Caches the API responses using the [Stale While Revalidate strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies#stale-while-revalidate). This means search partially works offline (only for search terms you've search for before).
 - Adds a notification to update the App when any asset changes. This is really important for PWA's, specially when deploying a new version as we want users to always use the latest version.
-- If you try to search while you're offline, it will remember the search and show a notification when the user is back online. This is not working reliably tho.
+- If you try to search while you're offline, it will remember the search and show a notification when the user is back online. This is not working reliably tho. Try this on a mobile device! Works a lot better there, you can use the deployed URL below.
 
 This application gets automatically deployed to Netlify on every push, check it out here: https://musing-mirzakhani-054044.netlify.com/
 
