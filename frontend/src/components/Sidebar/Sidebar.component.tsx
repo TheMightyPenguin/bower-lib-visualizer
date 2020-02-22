@@ -24,9 +24,6 @@ const Sidebar: React.FC = ({ children }) => {
         height="100%"
         padding="medium"
       >
-        <Box textAlign="right" onClick={toggleSidebar}>
-          X
-        </Box>
         {children}
       </Box>
       <Box

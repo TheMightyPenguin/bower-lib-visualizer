@@ -158,7 +158,7 @@ const App: React.FC = () => {
       }
       sidebarContent={
         <Box>
-          <Box>
+          <Box marginBottom="small">
             Items per page:{' '}
             <Select
               value={itemsPerPage}
@@ -173,7 +173,7 @@ const App: React.FC = () => {
               ]}
             />
           </Box>
-          <Box>
+          <Box marginBottom="small">
             Sort by:
             <Select
               value={sortField}
@@ -188,7 +188,7 @@ const App: React.FC = () => {
               ]}
             />
           </Box>
-          <Box>
+          <Box marginBottom="small">
             Sort mode:
             <Select
               value={sortMode}
