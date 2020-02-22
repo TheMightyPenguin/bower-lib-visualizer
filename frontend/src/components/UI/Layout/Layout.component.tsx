@@ -7,7 +7,7 @@ import Sidebar from 'components/UI/Sidebar';
 
 type LayoutProps = {
   mainContent: React.ReactNode;
-  sidebarContent: React.ReactNode;
+  sidebarContent?: React.ReactNode;
 };
 
 const Layout: React.FC<LayoutProps> = ({ mainContent, sidebarContent }) => {

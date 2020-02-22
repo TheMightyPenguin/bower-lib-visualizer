@@ -65,7 +65,25 @@ const App: React.FC = () => {
   }, [data, sortField, sortMode]);
 
   if (error) {
-    return <Flex>something went wrong</Flex>;
+    return (
+      <Layout
+        mainContent={
+          <Flex
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            height="100%"
+          >
+            <Box fontSize="xlarge" fontWeight="bold" marginBottom="small">
+              Ooops, something went wrong!
+            </Box>
+            <Box fontSize="medium" fontWeight="bold">
+              <a href="/">Click here to reload and try again.</a>
+            </Box>
+          </Flex>
+        }
+      />
+    );
   }
 
   return (
