@@ -14,13 +14,13 @@ const Layout: React.FC<LayoutProps> = ({ mainContent, sidebarContent }) => {
   return (
     <Flex width="100%" minHeight="100vh" backgroundColor="background">
       <Sidebar>{sidebarContent}</Sidebar>
-      <Box width="100%">
+      <Flex width="100%" flexDirection="column">
         <Header />
-        <Box width="100%" maxWidth="900px" margin="0 auto">
+        <Box width="100%" maxWidth="900px" margin="0 auto" flex={1}>
           {mainContent}
         </Box>
         <Footer />
-      </Box>
+      </Flex>
     </Flex>
   );
 };
