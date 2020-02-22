@@ -33,7 +33,7 @@ const Paginator: React.FC<PaginatorProps> = ({
         />
       ) : null}
       <Box paddingX="small">{currentPage}</Box>
-      {pagination.prev ? (
+      {pagination.next ? (
         <PageButton
           onClick={() => {
             onPageChange(pagination.next?.page as string);
