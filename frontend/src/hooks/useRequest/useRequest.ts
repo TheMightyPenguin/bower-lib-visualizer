@@ -2,8 +2,13 @@ import { useEffect, useState } from 'react';
 import request from 'utils/request';
 import { UseRequestState, ResponseWithPagination } from './types';
 
-function useRequest<T>(url: string): UseRequestState<T> {
-  const [state, setState] = useState<UseRequestState<T>>({
+type TransformDataFn<T, U> = (data: T) => U;
+
+function useRequest<T, U>(
+  url: string,
+  transformData: TransformDataFn<T, U>
+): UseRequestState<U> {
+  const [state, setState] = useState<UseRequestState<U>>({
     loading: true
   });
 
@@ -12,9 +17,10 @@ function useRequest<T>(url: string): UseRequestState<T> {
       setState({ loading: true });
       try {
         const data = await request<ResponseWithPagination<T>>(url);
+
         setState({
           loading: false,
-          data: data.data,
+          data: transformData(data.data),
           pagination: data.pagination
         });
       } catch (e) {
@@ -23,7 +29,7 @@ function useRequest<T>(url: string): UseRequestState<T> {
     }
 
     getData();
-  }, [url]);
+  }, [transformData, url]);
 
   return state;
 }

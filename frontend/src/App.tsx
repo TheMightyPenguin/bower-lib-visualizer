@@ -10,9 +10,19 @@ import useRequest from 'hooks/useRequest';
 import useQueryParamState from 'hooks/useQueryParamState';
 import useDebouncedValue from 'hooks/useDebouncedValue';
 import { useSidebarState } from 'providers/SidebarProvider';
-import { Project } from 'types/apiTypes';
+import { Project, ProjectWithOwner } from 'types/apiTypes';
 
 const API_URL = 'https://rmru2tqyjl.execute-api.us-west-2.amazonaws.com/prod/';
+
+function transformData(originalData: Project[]) {
+  const transformedData: ProjectWithOwner[] = originalData.map(item => {
+    const urlParts = item.repository_url.split('/');
+    const owner = urlParts[urlParts.length - 2] ?? '';
+    return { ...item, owner };
+  });
+
+  return transformedData;
+}
 
 const App: React.FC = () => {
   const [inputValue, setInputValue] = useQueryParamState('q');
@@ -26,7 +36,10 @@ const App: React.FC = () => {
   const searchUrl =
     API_URL + `?q=${debouncedInput}&page=${page}&per_page=${itemsPerPage}`;
 
-  const { loading, data, error, pagination } = useRequest<Project[]>(searchUrl);
+  const { loading, data, error, pagination } = useRequest<
+    Project[],
+    ProjectWithOwner[]
+  >(searchUrl, transformData);
 
   const projects = useMemo(() => {
     if (!data) {
@@ -40,11 +53,10 @@ const App: React.FC = () => {
     const sign = sortMode === 'ASC' ? 1 : -1;
 
     return data.sort((projectA, projectB) => {
-      // @ts-ignore
-      if (projectA[sortField] > projectB[sortField]) {
+      const sortKey = sortField as 'name' | 'owner' | 'stars';
+      if (projectA[sortKey] > projectB[sortKey]) {
         return 1 * sign;
-        // @ts-ignore
-      } else if (projectA[sortField] < projectB[sortField]) {
+      } else if (projectA[sortKey] < projectB[sortKey]) {
         return -1 * sign;
       } else {
         return 0;
@@ -93,7 +105,7 @@ const App: React.FC = () => {
                 borderRadius={['0px', '6px']}
                 boxShadow="5px 5px 16px 5px #9FB1BCCE"
               >
-                {projects.map((item: any, index) => {
+                {projects.map((item, index) => {
                   return (
                     <React.Fragment key={item.name}>
                       <ProjectItem project={item} />
@@ -132,16 +144,6 @@ const App: React.FC = () => {
                 { value: '20', label: '20' },
                 { value: '50', label: '50' }
               ]}
-            />
-          </Box>
-          <Box>
-            Page:{' '}
-            <Input
-              type="text"
-              value={page}
-              onChange={event => {
-                setPage(event.target.value);
-              }}
             />
           </Box>
           <Box>

@@ -1,14 +1,13 @@
 import React from 'react';
 import Box from 'components/UI/Box';
 import Flex from 'components/UI/Flex';
-import { Project } from 'types/apiTypes';
+import { ProjectWithOwner } from 'types/apiTypes';
 
 type ProjectItemProps = {
-  project: Project;
+  project: ProjectWithOwner;
 };
 
 const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
-  const owner = project.repository_url.split('/').splice(-2, 1);
   return (
     <Flex padding="medium">
       <Box>
@@ -25,7 +24,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
             project.name
           )}
         </Box>
-        <Box>By: {owner}</Box>
+        <Box>By: {project.owner}</Box>
       </Box>
       <Box margin="auto" />
       <Box>⭐️{project.stars} stars</Box>

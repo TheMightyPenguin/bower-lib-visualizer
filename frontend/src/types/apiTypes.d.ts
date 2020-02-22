@@ -6,6 +6,10 @@
  * If this were to change, then it may be useful as it already includes types.
  */
 
+export interface ProjectWithOwner extends Project {
+  owner: string;
+}
+
 export interface Project {
   dependent_repos_count: number;
   dependents_count: number;
