@@ -33,15 +33,8 @@ async function registerServiceWorker() {
     });
   });
 
-  const registration = await workbox.register();
-
-  try {
-    const permission = await window.Notification.requestPermission();
-    console.log(permission);
-  } catch (e) {
-    console.log(e);
-    console.info('Push notifications will not show');
-  }
+  await workbox.register();
+  await window.Notification.requestPermission();
 }
 
 export default registerServiceWorker;

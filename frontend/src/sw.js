@@ -13,6 +13,31 @@ self.addEventListener('message', event => {
   }
 });
 
+self.addEventListener('notificationclick', event => {
+  if (event.notification.tag === 'searchRetry') {
+    event.notification.close();
+    event.waitUntil(
+      clients
+        .matchAll({
+          type: 'window'
+        })
+        .then(function(clientList) {
+          for (let i = 0; i < clientList.length; i++) {
+            const client = clientList[i];
+            if (client.url == '/') {
+              return client
+                .focus()
+                .then(c => c.navigate(`/?${event.notification.data}`));
+            }
+          }
+          if (clients.openWindow) {
+            return clients.openWindow(`/?${event.notification.data}`);
+          }
+        })
+    );
+  }
+});
+
 workbox.core.clientsClaim();
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -27,11 +52,6 @@ workbox.routing.registerNavigationRoute(
 function showNotification(title, options) {
   return self.registration.showNotification(title, options);
 }
-
-self.addEventListener('push', event => {
-  const title = 'Get Started With Workbox';
-  event.waitUntil(self.registration.showNotification(title, { tag: 'lel ' }));
-});
 
 // Cache API with StaleWhileRevalidate
 workbox.routing.registerRoute(
@@ -54,14 +74,13 @@ workbox.routing.registerRoute(
           const requestUrl = new URL(entry.request.url);
           const searchQuery = requestUrl.searchParams.get('q');
 
-          await fetch(entry.request);
-
           const notificationTitle = searchQuery
             ? `Your serch for "${searchQuery}" is waiting for you!`
             : 'Results for most popular libraries are waiting for you!';
-          console.log(requestUrl);
-          console.log('sending notification');
-          await showNotification(notificationTitle);
+          await showNotification(notificationTitle, {
+            tag: 'searchRetry',
+            data: requestUrl.searchParams.toString()
+          });
         }
       })
     ]

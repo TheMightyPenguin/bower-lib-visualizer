@@ -16,7 +16,7 @@ const UpdateServiceWorkerNotice: React.FC = () => {
       top="60px"
       left="0"
       right="0"
-      height="60px"
+      height="80px"
       backgroundColor="primary"
     >
       {notification}
