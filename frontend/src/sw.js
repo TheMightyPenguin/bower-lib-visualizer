@@ -1,3 +1,4 @@
+// @ts-nocheck
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 
 const API_ENDPOINT =
