@@ -21,7 +21,11 @@ export interface Project {
   latest_download_url: string;
   latest_release_number: string;
   latest_release_published_at: string;
+  latest_stable_release_number?: string;
+  latest_stable_release_published_at?: string;
   latest_stable_release: ProjectRelease;
+  license_normalized?: boolean;
+  licenses: any;
   name: string;
   normalized_licenses: string[];
   package_manager_url: string;
@@ -56,10 +60,14 @@ export interface ProjectDependency {
 export interface ProjectRelease {
   created_at: string;
   id: number;
-  number: string;
-  project_id: number;
+  number?: string;
+  repository_id: number;
+  name: string;
+  sha: string;
+  kind: string;
+  project_id?: number;
   published_at: string;
-  runtime_dependencies_count: number | null;
+  runtime_dependencies_count?: number | null;
   updated_at: string;
 }
 
