@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This application uses a Service Worker, _and it runs even on development mode_, so be aware of that. The service worker adds the following functionality:
 
-- Caches the API responses using the [Stale While Revalidate strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies#stale-while-revalidate)
+- Caches the API responses using the [Stale While Revalidate strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies#stale-while-revalidate). This means search partially works offline (only for search terms you've search for before).
 
 ## Available Scripts
 
