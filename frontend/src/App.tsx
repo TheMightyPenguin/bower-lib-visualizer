@@ -37,7 +37,8 @@ const App: React.FC = () => {
 
   const debouncedInput = useDebouncedValue(inputValue, 300);
   const searchUrl =
-    API_URL + `?q=${debouncedInput}&page=${page}&per_page=${itemsPerPage}`;
+    API_URL +
+    `?q=${debouncedInput.toLowerCase()}&page=${page}&per_page=${itemsPerPage}`;
 
   const { loading, data, error, pagination } = useRequest<
     Project[],
