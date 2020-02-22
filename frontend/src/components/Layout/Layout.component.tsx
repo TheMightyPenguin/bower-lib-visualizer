@@ -1,9 +1,9 @@
 import React from 'react';
-import Box from 'components/UI/Box';
-import Flex from 'components/UI/Flex';
-import Header from 'components/UI/Header';
-import Footer from 'components/UI/Footer';
-import Sidebar from 'components/UI/Sidebar';
+import Box from 'components/Box';
+import Flex from 'components/Flex';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import Sidebar from 'components/Sidebar';
 
 type LayoutProps = {
   mainContent: React.ReactNode;

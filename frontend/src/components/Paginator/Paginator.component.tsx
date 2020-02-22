@@ -1,6 +1,6 @@
 import React from 'react';
-import Box from 'components/UI/Box';
-import Flex from 'components/UI/Flex';
+import Box from 'components/Box';
+import Flex from 'components/Flex';
 import { Pagination } from 'hooks/useRequest/types';
 import PageButton from './PageButton.component';
 

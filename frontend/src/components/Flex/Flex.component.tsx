@@ -1,4 +1,4 @@
-import Box from 'components/UI/Box';
+import Box from 'components/Box';
 import styled from 'styles/styled';
 
 const Flex = styled(Box)({

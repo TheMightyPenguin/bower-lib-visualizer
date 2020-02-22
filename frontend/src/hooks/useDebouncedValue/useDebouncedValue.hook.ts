@@ -10,7 +10,7 @@ function useDebouncedValue<T>(value: T, timeout: number): T {
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [value]);
+  }, [value, timeout]);
 
   return debouncedValue;
 }

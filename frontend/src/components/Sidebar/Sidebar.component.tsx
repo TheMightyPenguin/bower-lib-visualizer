@@ -1,5 +1,5 @@
 import React from 'react';
-import Box from 'components/UI/Box';
+import Box from 'components/Box';
 import { useSidebarState } from 'providers/SidebarProvider';
 
 const Sidebar: React.FC = ({ children }) => {

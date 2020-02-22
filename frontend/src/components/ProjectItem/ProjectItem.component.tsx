@@ -1,6 +1,6 @@
 import React from 'react';
-import Box from 'components/UI/Box';
-import Flex from 'components/UI/Flex';
+import Box from 'components/Box';
+import Flex from 'components/Flex';
 import { ProjectWithOwner } from 'types/apiTypes';
 
 type ProjectItemProps = {
@@ -27,7 +27,12 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
         <Box>By: {project.owner}</Box>
       </Box>
       <Box margin="auto" />
-      <Box>⭐️{project.stars} stars</Box>
+      <Box>
+        <span role="img" aria-label="star">
+          ⭐️
+        </span>
+        {project.stars} stars
+      </Box>
     </Flex>
   );
 };
