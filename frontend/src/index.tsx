@@ -7,11 +7,13 @@ import HistoryProvider from 'providers/HistoryProvider';
 import SidebarProvider from 'providers/SidebarProvider';
 import { ThemeProvider } from 'emotion-theming';
 import theme from 'styles/themes/default';
+import Notifications from 'components/Notifications';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <HistoryProvider>
       <SidebarProvider>
+        <Notifications />
         <GlobalStyles />
         <App />
       </SidebarProvider>
