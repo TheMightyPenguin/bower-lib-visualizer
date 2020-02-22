@@ -12,8 +12,10 @@ function mockFetch<T extends {}>(mockData: T, status = 200) {
   });
 }
 
+const transformFn = (x: any) => x;
+
 const Component: React.FC<{ url: string }> = ({ url }) => {
-  const { loading, data, error } = useRequest(url);
+  const { loading, data, error } = useRequest(url, transformFn);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -30,18 +32,13 @@ const Component: React.FC<{ url: string }> = ({ url }) => {
   return <div>{data.message}</div>;
 };
 
-test('if the url is empty, shows empty data message', () => {
-  const { getByText } = render(<Component url="" />);
-  expect(getByText('No data to show yet')).toBeInTheDocument();
-});
-
 test('shows a loading message on initial render', () => {
   const { getByText } = render(<Component url="https://example.com" />);
   expect(getByText('Loading...')).toBeInTheDocument();
 });
 
 test('shows a loading message and eventually the data', async () => {
-  mockFetch({ message: 'hello world' });
+  mockFetch({ data: { message: 'hello world' }, pagination: null });
   const { getByText, findByText } = render(
     <Component url="https://example.com" />
   );
@@ -50,7 +47,7 @@ test('shows a loading message and eventually the data', async () => {
 });
 
 test('shows a loading message and eventually the error', async () => {
-  mockFetch({ message: 'hello world' }, 401);
+  mockFetch({ data: { message: 'hello world' }, pagination: null }, 401);
   const { getByText, findByText } = render(
     <Component url="https://example.com" />
   );
