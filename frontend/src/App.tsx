@@ -9,6 +9,7 @@ import ProjectItem from 'components/ProjectItem';
 import useRequest from 'hooks/useRequest';
 import useQueryParamState from 'hooks/useQueryParamState';
 import useDebouncedValue from 'hooks/useDebouncedValue';
+import useOffline from 'hooks/useOffline';
 import { useSidebarState } from 'providers/SidebarProvider';
 import { Project, ProjectWithOwner } from 'types/apiTypes';
 
@@ -31,6 +32,7 @@ const App: React.FC = () => {
   const [sortField, setSortField] = useQueryParamState('sort_by');
   const [sortMode, setSortMode] = useQueryParamState('sort_mode');
   const [showSidebar, toggleSidebar] = useSidebarState();
+  const isOffline = useOffline();
 
   const debouncedInput = useDebouncedValue(inputValue, 300);
   const searchUrl =
@@ -64,7 +66,7 @@ const App: React.FC = () => {
     });
   }, [data, sortField, sortMode]);
 
-  if (error) {
+  if (error && !isOffline) {
     return (
       <Layout
         mainContent={
@@ -101,6 +103,13 @@ const App: React.FC = () => {
               }}
             />
           </Box>
+          {isOffline && !loading && !projects ? (
+            <Box fontSize="large" fontWeight="bold" marginBottom="small">
+              You have no internet connection, but you can try again with a
+              search you&apos;ve done before! (We store search results for
+              offline usage).
+            </Box>
+          ) : null}
           {loading ? (
             <Box paddingX={['small', 'none']}>
               {debouncedInput
