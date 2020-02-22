@@ -1,3 +1,10 @@
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+
+const API_ENDPOINT =
+  'https://rmru2tqyjl.execute-api.us-west-2.amazonaws.com/prod/';
+
+const API_REGEX = new RegExp(API_ENDPOINT + '.*');
+
 self.addEventListener('message', event => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
@@ -6,7 +13,6 @@ self.addEventListener('message', event => {
 
 workbox.core.clientsClaim();
 
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerNavigationRoute(
@@ -16,13 +22,15 @@ workbox.routing.registerNavigationRoute(
   }
 );
 
-const API_ENDPOINT =
-  'https://rmru2tqyjl.execute-api.us-west-2.amazonaws.com/prod/';
-
-// Cache Api with StaleWhileRevalidate
+// Cache API with StaleWhileRevalidate
 workbox.routing.registerRoute(
-  new RegExp(API_ENDPOINT + '.*'),
+  API_REGEX,
   new workbox.strategies.StaleWhileRevalidate({
-    plugins: []
+    cacheName: 'API_PROJECTS',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 1 * 24 * 60 * 60 // 1 Day
+      })
+    ]
   })
 );
