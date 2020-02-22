@@ -18,7 +18,7 @@ export interface Project {
   homepage: string | null;
   keywords: string[];
   language: string;
-  latest_download_url: string;
+  latest_download_url: string | null;
   latest_release_number: string;
   latest_release_published_at: string;
   latest_stable_release_number?: string;
@@ -28,7 +28,7 @@ export interface Project {
   licenses: any;
   name: string;
   normalized_licenses: string[];
-  package_manager_url: string;
+  package_manager_url: string | null;
   platform: string;
   rank: number;
   repository_url: string;
