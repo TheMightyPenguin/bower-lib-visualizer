@@ -9,7 +9,6 @@ import ProjectItem from 'components/ProjectItem';
 import useRequest from 'hooks/useRequest';
 import useQueryParamState from 'hooks/useQueryParamState';
 import useDebouncedValue from 'hooks/useDebouncedValue';
-import useOffline from 'hooks/useOffline';
 import { useSidebarState } from 'providers/SidebarProvider';
 import { Project, ProjectWithOwner } from 'types/apiTypes';
 
@@ -32,7 +31,7 @@ const App: React.FC = () => {
   const [sortField, setSortField] = useQueryParamState('sort_by');
   const [sortMode, setSortMode] = useQueryParamState('sort_mode');
   const [showSidebar, toggleSidebar] = useSidebarState();
-  const isOffline = useOffline();
+  const isOffline = !window.navigator.onLine;
 
   const debouncedInput = useDebouncedValue(inputValue, 300);
   const searchUrl =
