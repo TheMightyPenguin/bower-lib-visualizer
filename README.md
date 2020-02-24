@@ -4,7 +4,7 @@ This project is meant to show a list of searchable/sortable/filterable Bower pro
 
 ## Frontend
 
-Check the `/frontend` folder to see the UI implementation, it's mmade in React + TypeScript.
+Check the `/frontend` folder to see the UI implementation, it's made with React + TypeScript.
 
 ## API
 
