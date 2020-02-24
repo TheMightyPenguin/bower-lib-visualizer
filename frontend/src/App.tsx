@@ -12,7 +12,6 @@ import useDebouncedValue from 'hooks/useDebouncedValue';
 import useOffline from 'hooks/useOffline';
 import { useSidebarState } from 'providers/SidebarProvider';
 import { Project, ProjectWithOwner } from 'types/apiTypes';
-import { isDOMComponent } from 'react-dom/test-utils';
 
 const API_URL = 'https://rmru2tqyjl.execute-api.us-west-2.amazonaws.com/prod/';
 
