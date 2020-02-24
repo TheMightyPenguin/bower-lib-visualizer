@@ -117,33 +117,44 @@ const App: React.FC = () => {
                 : 'Loading popular projects'}
             </Box>
           ) : projects ? (
-            <React.Fragment>
-              <Box
-                onClick={toggleSidebar}
-                paddingX={['small', 'none']}
-                paddingBottom="medium"
-                cursor="pointer"
-                textDecoration="underline"
-              >
-                {showSidebar ? 'Hide' : 'Show'} filter/sort options
+            projects.length > 0 ? (
+              <React.Fragment>
+                <Box
+                  onClick={toggleSidebar}
+                  paddingX={['small', 'none']}
+                  paddingBottom="medium"
+                  cursor="pointer"
+                  textDecoration="underline"
+                >
+                  {showSidebar ? 'Hide' : 'Show'} filter/sort options
+                </Box>
+                <Box
+                  backgroundColor="white"
+                  borderRadius={['0px', '6px']}
+                  boxShadow="5px 5px 16px 5px #9FB1BCCE"
+                >
+                  {projects.map((item, index) => {
+                    return (
+                      <React.Fragment key={item.name}>
+                        <ProjectItem project={item} />
+                        {index !== projects.length - 1 ? (
+                          <Box borderTop="1px solid" borderTopColor="accent" />
+                        ) : null}
+                      </React.Fragment>
+                    );
+                  })}
+                </Box>
+              </React.Fragment>
+            ) : (
+              <Box paddingX="small">
+                <Box textAlign="center" fontSize="large" fontWeight="bold">
+                  No projects were found :(
+                </Box>
+                <Box textAlign="center" fontSize="medium" fontWeight="bold">
+                  Try with another search!
+                </Box>
               </Box>
-              <Box
-                backgroundColor="white"
-                borderRadius={['0px', '6px']}
-                boxShadow="5px 5px 16px 5px #9FB1BCCE"
-              >
-                {projects.map((item, index) => {
-                  return (
-                    <React.Fragment key={item.name}>
-                      <ProjectItem project={item} />
-                      {index !== projects.length - 1 ? (
-                        <Box borderTop="1px solid" borderTopColor="accent" />
-                      ) : null}
-                    </React.Fragment>
-                  );
-                })}
-              </Box>
-            </React.Fragment>
+            )
           ) : null}
           {pagination ? (
             <Box paddingTop="large">
