@@ -65,7 +65,7 @@ workbox.routing.registerRoute(
       new workbox.backgroundSync.Plugin('retryQueue', {
         maxRetentionTime: 24 * 60, // 24 hours
         onSync: async ({ queue }) => {
-          const entry = await queue.shiftRequest();
+          const entry = await queue.popRequest();
 
           if (!entry || !entry.request) {
             return;
@@ -75,7 +75,7 @@ workbox.routing.registerRoute(
           const searchQuery = requestUrl.searchParams.get('q');
 
           const notificationTitle = searchQuery
-            ? `Your serch for "${searchQuery}" is waiting for you!`
+            ? `Your search for "${searchQuery}" is waiting for you!`
             : 'Results for most popular libraries are waiting for you!';
           await showNotification(notificationTitle, {
             tag: 'searchRetry',
