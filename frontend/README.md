@@ -8,7 +8,7 @@ This application uses a Service Worker, _and it runs even on development mode_, 
 
 - Caches the API responses using the [Stale While Revalidate strategy](https://developers.google.com/web/tools/workbox/modules/workbox-strategies#stale-while-revalidate). This means search partially works offline (only for search terms you've search for before).
 - Adds a notification to update the App when any asset changes. This is really important for PWA's, specially when deploying a new version as we want users to always use the latest version.
-- If you try to search while you're offline, it will remember the search and show a notification when the user is back online. This is not working reliably tho. Try this on a mobile device! Works a lot better there, you can use the deployed URL below.
+- If you try to search while you're offline, it will remember the search and show a notification when the user is back online.Try this on a mobile device! Works a lot better there, you can use the deployed URL below.
 
 This application gets automatically deployed to Netlify on every push, check it out here: https://musing-mirzakhani-054044.netlify.com/
 
@@ -29,4 +29,5 @@ This application gets automatically deployed to Netlify on every push, check it 
 - Also improve the service worker logic, to make it more resilient.
 - UX/UI, I'm not totally happy with how the apps looks, but it's decent.
 - Implement better primivites components to handle Layouts, components like Stack or Inline (similar to the ones in this design system: https://seek-oss.github.io/braid-design-system/foundations/layout) would make it easier to implement layouts, instead of using Box's with lots of props all over the place. The Box approach is nice to use and really flexible, but won't scale well to bigger applications as we'll see repeating props all over the place, so having abstracions like Stack or Inline help a lot with this, and a bonus is that we don't need the care about the underlying implementation detials (e.g.: using Flex or CSS Grid).
+- When the search term changes, it would be good to reset the page we're at on th page 1!
 - Probably a lot of other things that I'm missing, there's always room for improvement! :D
