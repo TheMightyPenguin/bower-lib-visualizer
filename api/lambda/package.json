@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "node-fetch": "^2.6.0",
-    "parse-link-header": "^1.0.1"
+    "parse-link-header": "^2.0.0"
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.4",
